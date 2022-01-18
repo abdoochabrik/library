@@ -38,18 +38,16 @@ public class UserController {
 	  
 	  // se connecter
 	  @RequestMapping(value = "/Users/login", method = RequestMethod.POST) 
-	  public Boolean Connecter(@RequestBody User u){  
+	  public User Connecter(@RequestBody User u){  
 		      User user2 = null;
-			  String username = u.getUsername();
-			  User user = userRepository.findByusername(username);
-			  return user.getPassword() == u.getPassword();
-			  /*if (user.getPassword() == u.getPassword()) {
+			  User user = userRepository.findByusername(u.getUsername());
+			  if (user.getPassword().equals(u.getPassword())) {
 				  return user;
 			  }
 			  else {
 				  return user2;
 				 
-			  }*/
+			  }
 	  }  
 	  
 	  // chercher par username
